@@ -105,6 +105,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon:'mdi-pen',
+          title:'Editor',
+          to:'/editor'
         }
       ],
       miniVariant: false,

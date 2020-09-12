@@ -10,18 +10,15 @@
       md6
     >
       <div class="text-center">
-        <logo />
-        <vuetify-logo />
-        <node-editor/>
       </div>
       <v-card>
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Welcome to use Xworld
         </v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
+          <p>Xworld is a node editor for image processing. It was designed to simplify developers for create processing applications.</p>
           <p>
-            For more information on Vuetify, check out the <a
+            For more information on Xworld, check out the <a
               href="https://vuetifyjs.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -72,6 +69,12 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
+          <v-btn color="primary"
+            nuxt
+            to="/editor"
+          >
+            start
+          </v-btn>
           <v-btn
             color="primary"
             nuxt
@@ -88,13 +91,11 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import nodeEditor from '~/components/nodeEditor/nodeEditor.vue'
 
 export default {
   components: {
     Logo,
-    VuetifyLogo,
-    nodeEditor
+    VuetifyLogo
   }
 }
 </script>
