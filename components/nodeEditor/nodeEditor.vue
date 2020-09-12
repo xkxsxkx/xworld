@@ -1,10 +1,17 @@
 <template>
   <div class="nodeEditor">
+    <v-bottom-navigation v-model="bottomNav">
+      <v-btn value="recent">
+        <span>Recent</span>
+        <v-icon>mdi-history</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </div>
 </template>
 
 <script>
 //import Vue from 'vue'
+import Vuetify from 'vuetify'
 import G6 from '@antv/g6'
 
 export default {

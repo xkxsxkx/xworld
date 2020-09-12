@@ -12,6 +12,7 @@
       <div class="text-center">
         <logo />
         <vuetify-logo />
+        <node-editor/>
       </div>
       <v-card>
         <v-card-title class="headline">
@@ -92,7 +93,8 @@ import nodeEditor from '~/components/nodeEditor/nodeEditor.vue'
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
+    nodeEditor
   }
 }
 </script>
