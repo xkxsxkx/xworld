@@ -26,11 +26,12 @@
     "types": [
       "@types/node",
       "@nuxt/types"
-    ]
+    ],
+    "strictNullChecks":false
   },
   "exclude": [
     "node_modules",
     ".nuxt",
     "dist"
-  ]
+  ],
 }
