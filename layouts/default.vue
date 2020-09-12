@@ -36,6 +36,7 @@
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
+      <!--
       <v-btn
         icon
         @click.stop="clipped = !clipped"
@@ -48,6 +49,7 @@
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn>
+      -->
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn
@@ -92,7 +94,7 @@
 export default {
   data () {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       items: [
@@ -107,7 +109,7 @@ export default {
           to: '/inspire'
         },
         {
-          icon:'mdi-pen',
+          icon:'mdi-file-edit',
           title:'Editor',
           to:'/editor'
         }
