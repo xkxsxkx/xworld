@@ -1,5 +1,5 @@
 <template>
-  <node-editor/>
+  <nodeEditor/>
 </template>
 
 <script>
