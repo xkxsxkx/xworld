@@ -19,6 +19,9 @@
           <v-card-text>
             <v-container>
               <v-row>
+                <v-col cols="12">
+                  <v-text-field label="Project name" required></v-text-field>
+                </v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -40,15 +43,18 @@
         <v-icon>mdi-history</v-icon>
       </v-btn>
 
-      <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <span v-bind="attrs" v-on="on">This text has a tooltip</span>
-      </template>
-      <span>Tooltip</span>
-      </v-tooltip>
-
     </v-bottom-navigation>
-
+    <v-col>
+      <v-row>
+        <v-card color="#385F73" dark>
+          <v-card-title class="headline">you project</v-card-title>
+          <v-card-subtitle>create time</v-card-subtitle>
+          <v-card-actions>
+            <v-btn text>edit it</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-row>
+    </v-col>
 
   </div>
 </template>
