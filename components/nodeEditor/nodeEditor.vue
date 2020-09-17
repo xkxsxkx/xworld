@@ -1,20 +1,23 @@
 <template>
   <div class="nodeEditor">
     <Navigator ref="nav"></Navigator>
+    <Sketchpad ref="pad"></Sketchpad>
   </div>
 </template>
 
 <script>
 //import Vue from 'vue'
 import Vuetify from 'vuetify'
-import Navigator from '~/components/nodeEditor/components/Navigator.vue'
-import ModelCommand from '~/components/nodeEditor/command/index.js'
+import Navigator from '~/components/nodeEditor/containers/Navigator.vue'
+import ModelCommand from '~/components/nodeEditor/command/ModelCommand.js'
+import Sketchpad from '~/components/nodeEditor/containers/Sketchpad.vue'
 const _ = require('lodash')
 
 export default {
   name:'nodeEditor',
   components:{
-    Navigator
+    Navigator,
+    Sketchpad
   },
   data(){
     return{
@@ -24,6 +27,7 @@ export default {
         status:'add'
       },
       editor:null,
+      graph:null,
       command:null,
       mode:'edit',
       isFullScreen:false,
@@ -36,11 +40,12 @@ export default {
   methods: {
     init(){
       let _t = this;
-      //let el = _t.$el;
-      //let navigator = el.querySelector('#Navigator');
       _t.command = new ModelCommand(_t);
       setTimeout(()=>{
         _t.$refs.nav.init(_t);
+      },10);
+      setTimeout(()=>{
+        _t.$refs.pad.init(_t);
       },10);
     },
     registerComp(observer){

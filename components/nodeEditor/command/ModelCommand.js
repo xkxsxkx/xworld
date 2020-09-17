@@ -7,12 +7,7 @@ export default class ModelCommand{
       //this.redoList = [];
     }
     createProject(){
-      this.model.editor = new G6.Graph({
-        plugins:[
-        ],
-        fitView:true,
-        fitViewPadding:20,
-      });
+
     }
     openProject(){
 
