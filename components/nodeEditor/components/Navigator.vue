@@ -1,6 +1,6 @@
 <template>
   <div class="navigator" id="navigator">
-    <v-bottom-navigation v-model="bottomNav">
+    <v-bottom-navigation>
 
       <v-dialog v-model="ShowNewDialog " persistent max-width="599px">
         <template v-slot:activator="{on,attrs}">
@@ -45,13 +45,28 @@
 
       <v-divider inset vertical></v-divider>
 
-      <v-btn value="recent">
+      <v-btn value="recent" @click="isDisplay=!isDisplay">
         <span>Recent</span>
         <v-icon>mdi-history</v-icon>
       </v-btn>
 
     </v-bottom-navigation>
+
+      <v-col >
+        <v-row v-for="file in recentFiles" :key="file.title" v-bind:date="file.date">
+          <transition name="fade">
+            <v-card color="#385F73" dark  v-if="isDisplay">
+              <v-card-title class="headline">{{file.title}}</v-card-title>
+              <v-card-subtitle>{{file.date}}</v-card-subtitle>
+              <v-card-actions>
+                <v-btn text>edit it</v-btn>
+              </v-card-actions>
+            </v-card>
+          </transition>
+        </v-row>
+      </v-col>
   </div>
+
 
 </template>
 
@@ -60,8 +75,51 @@ export default {
   name:'Navigator',
   data(){
     return{
-      ShowNewDialog:false
+      ShowNewDialog:false,
+      isDisplay:false,
+      Model:null,
+      recentFiles:[
+        //{
+          //id : '0',
+          //title:'none',
+          //date:'none'
+        //}
+      ]
+    }
+  },
+  methods:{
+    init(model){
+      let _t = this;
+      _t.Model = model;
+      _t.Model.registerComp(this);
+    },
+    Display(){
+      let _t = this;
+      _t.isDisplay = true;
+    },
+    Disappear(){
+      let _t = this;
+      _t.isDisplay = false;
+    },
+    newProject(){
+      let _t = this;
+      _t.Disappear();
+      _t.Model.command.createProject();
+    },
+    openProject(){
+      let _t = this;
+      _t.Model.command.openProject();
     }
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity : 0;
+}
+</style>

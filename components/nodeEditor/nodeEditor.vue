@@ -1,26 +1,15 @@
 <template>
   <div class="nodeEditor">
-    <Navigator/>
-    <v-col>
-      <v-row>
-        <v-card color="#385F73" dark>
-          <v-card-title class="headline">you project</v-card-title>
-          <v-card-subtitle>create time</v-card-subtitle>
-          <v-card-actions>
-            <v-btn text>edit it</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-row>
-    </v-col>
-
+    <Navigator ref="nav"></Navigator>
   </div>
 </template>
 
 <script>
 //import Vue from 'vue'
 import Vuetify from 'vuetify'
-import G6 from '@antv/g6'
 import Navigator from '~/components/nodeEditor/components/Navigator.vue'
+import ModelCommand from '~/components/nodeEditor/command/index.js'
+const _ = require('lodash')
 
 export default {
   name:'nodeEditor',
@@ -30,10 +19,12 @@ export default {
   data(){
     return{
       editorInfo:{},
+      compsList:[],
       defInfo:{
         status:'add'
       },
       editor:null,
+      command:null,
       mode:'edit',
       isFullScreen:false,
       clipboard:{
@@ -45,20 +36,33 @@ export default {
   methods: {
     init(){
       let _t = this;
-      _t.editor = new G6.Graph({
-        plugins:[
-        ],
-        fitView:true,
-        fitViewPadding:20,
-      });
+      //let el = _t.$el;
+      //let navigator = el.querySelector('#Navigator');
+      _t.command = new ModelCommand(_t);
+      setTimeout(()=>{
+        _t.$refs.nav.init(_t);
+      },10);
     },
-    newProject(){
+    registerComp(observer){
       let _t = this;
-      _t.isDisplayNavi = false;
+      _t.compsList.push(observer);
     },
-    openProject(){
+    unregisterComp(observer){
       let _t = this;
+      const remove = (obj)=>{
+        let i = _t.compsList.length;
+        while(i--){
+          if(_t.compsList[i] === observer){
+            return i;
+          }
+        }
+      }
+      _t.compsList.splice(remove(observer),1);
     }
+  },
+  created(){
+    let _t = this;
+    _t.$nextTick(_t.init());
   }
 }
 </script>
